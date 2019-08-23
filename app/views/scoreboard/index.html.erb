@@ -1,3 +1,16 @@
 <h1>Scoreboard Owin Tournament:</h1>
 <p>List of scores:</p>
 
+<% @players.each do |k,v| %>
+<p class="category_title"><%= k.name %>
+<div class="d-table">
+  <% v.each do |p| %>
+    <ul class="d-row">
+      <li><%= p.name %></li>
+      <% p.scores.order(:created_at).each do |s| %>
+        <li><%= s.wod.name %>: <%= s.position %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+<% end %>
