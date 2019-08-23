@@ -4,10 +4,10 @@ class Player < ApplicationRecord
   has_many :wods, through: :scores
 
   def points
-    scores.sum(&:points)
+    scores.map(&:points).compact.sum
   end
 
   def time
-    scores.sum(&:time) || Time.new(0)
+    scores.map(&:time).compact.sum
   end
 end
