@@ -6,11 +6,11 @@
 <div class="d-table">
   <% players.sort_by(&:points).reverse.each_with_index do |player, i| %>
     <ul class="d-row">
-      <li><%= i + 1 %>º (<%= player.time.strftime("%I:%M:%S") %>) <%= player.points %></li>
+      <li><%= i + 1 %>º (<%= player.time&.strftime("%I:%M:%S") %>) <%= player.points %></li>
       <li> <%= player.name %></li>
 
       <% player.scores.each do |score| %>
-        <li><%= player.wods.find { |w| w.id == score.wod_id }.name %>: <%= score.position %>º <%= "(#{score.time.strftime("%I:%M:%S")})" if score.time %> <%= "#{score.points}p" if score.points %></li>
+        <li><%= player.wods.find { |w| w.id == score.wod_id }.name %>: <%= score.position %>º <%= "(#{score.time&.strftime("%I:%M:%S")})" if score.time %> <%= "#{score.points}p" if score.points %></li>
       <% end %>
     </ul>
   <% end %>
