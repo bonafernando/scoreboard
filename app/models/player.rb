@@ -8,6 +8,8 @@ class Player < ApplicationRecord
   end
 
   def time
-    scores.map(&:time).compact.sum
+    sum = scores.map(&:time).compact.sum
+    return nil if sum == 0
+    sum
   end
 end
