@@ -8,7 +8,7 @@
     <ul class="d-row">
       <li><%= p.name %></li>
       <% p.scores.order(:created_at).each do |s| %>
-        <li><%= s.wod.name %>: <%= s.position %></li>
+        <li><%= s.wod.name %>: <%= s.position %>º <%= "(#{s.time.to_formatted_s(:time)})" if s.time %> <%= "#{s.points}p" if s.points %></li>
       <% end %>
     </ul>
   <% end %>

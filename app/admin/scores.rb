@@ -3,7 +3,7 @@ ActiveAdmin.register Score do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  permit_params :position, :player_id, :wod_id
+  permit_params :position, :player_id, :wod_id, :time, :points
   #
   # or
   #
