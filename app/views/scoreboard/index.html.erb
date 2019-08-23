@@ -1,14 +1,16 @@
 <h1>Scoreboard Owin Tournament:</h1>
 <p>List of scores:</p>
 
-<% @players.each do |k,v| %>
-<p class="category_title"><%= k.name %>
+<% @players.each do |category, players| %>
+<p class="category_title"><%= category.name %>
 <div class="d-table">
-  <% v.each do |p| %>
+  <% players.sort_by(&:points).reverse.each_with_index do |player, i| %>
     <ul class="d-row">
-      <li><%= p.name %></li>
-      <% p.scores.order(:created_at).each do |s| %>
-        <li><%= s.wod.name %>: <%= s.position %>º <%= "(#{s.time.to_formatted_s(:time)})" if s.time %> <%= "#{s.points}p" if s.points %></li>
+      <li><%= i + 1 %>º (<%= player.time.to_formatted_s(:time) %>) <%= player.points %></li>
+      <li> <%= player.name %></li>
+
+      <% player.scores.each do |score| %>
+        <li><%= player.wods.find { |w| w.id == score.wod_id }.name %>: <%= score.position %>º <%= "(#{score.time.to_formatted_s(:time)})" if score.time %> <%= "#{score.points}p" if score.points %></li>
       <% end %>
     </ul>
   <% end %>
